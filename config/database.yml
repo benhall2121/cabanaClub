@@ -1,0 +1,20 @@
+development:
+ adapter: mysql2
+ database: cabanaClub_development
+ username: root
+ password:
+ encoding: utf8
+
+test:
+ adapter: mysql2
+ database: cabanaClub_test
+ username: root
+ password:
+ encoding: utf8
+
+production:
+ adapter: mysql2
+ database: cabanaClub_production
+ username: root
+ password: 
+ encoding: utf8

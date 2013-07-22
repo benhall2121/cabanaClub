@@ -1,0 +1,12 @@
+<div class="bordered_wrapper span7 offset2">
+  <h3>
+  	Reset Password
+  </h3>
+
+  <%= form_tag password_resets_path, :method => :post do %>
+    <div class="field">
+      <%= text_field_tag :email, params[:email], :class => 'input-block-level', :placeholder => 'Email' %>
+    </div>
+    <div class="actions"><%= submit_tag "Reset Password", :class => 'btn btn-main' %></div>
+  <% end %>
+</div>

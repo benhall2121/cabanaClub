@@ -1,0 +1,138 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap-responsive.min
+ *= require bootstrap.min
+ *= require font-awesome.min
+ *= require_self
+ */
+
+
+ body{
+ }
+
+h1, h2, h3{
+  margin:0;
+}
+
+textarea{
+  resize:none;
+  height:100px;
+}
+
+.footer{
+  font-size: 11px;
+  color: #CCC;
+  border-top:1px solid #EEE;
+  text-align:center;
+}
+
+.main_margin{
+  margin-bottom: 10px;
+}
+
+.navbar-straightCorners{
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+}
+
+.navbar{
+	border-bottom: 2px solid #D4AF37;
+}
+
+.flash_container{
+  border:1px solid #D4AF37;
+  background-color: #CFB53B;
+  padding:3px;
+  text-align:center;
+  
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.highlight_color{
+  color:#D4AF37; 
+}
+
+.hero-unit{
+  padding:20px;
+  
+  overflow:auto;
+
+  background-color:#fafafa;
+  background-image:-moz-linear-gradient(top,#fff,#f2f2f2);
+  background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f2f2f2));
+  background-image:-webkit-linear-gradient(top,#fff,#f2f2f2);
+  background-image:-o-linear-gradient(top,#fff,#f2f2f2);
+  background-image:linear-gradient(to bottom,#fff,#f2f2f2);
+  background-repeat:repeat-x;
+
+  border:1px solid #d4d4d4;
+
+  -webkit-box-shadow:0 1px 4px rgba(0,0,0,0.065);
+  -moz-box-shadow:0 1px 4px rgba(0,0,0,0.065);
+  box-shadow:0 1px 4px rgba(0,0,0,0.065);
+}
+
+.btn-main{
+  color: #FFF;
+  background-color: #D4AF37;
+  background-image: -moz-linear-gradient(top, #D4AF37, #CFB53B);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#D4AF37), to(#CFB53B));
+  background-image: -webkit-linear-gradient(top, #D4AF37, #CFB53B);
+  background-image: -o-linear-gradient(top, #D4AF37, #CFB53B);
+  background-image: linear-gradient(to bottom, #D4AF37, #CFB53B);
+  background-repeat: repeat-x;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffD4AF37', endColorstr='#ffCFB53B', GradientType=0);
+  border-color: #CFB53B #CFB53B #2a534c;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+.btn-main:hover,.btn-main:focus,.btn-main:active,.btn-main.active,.btn-main.disabled,.btn-main[disabled]{
+  color:#FFF;
+  background-color:#CFB53B;
+  *background-color:#D4AF37;
+}
+
+.bordered_wrapper{
+  overflow:auto;
+
+  border:1px solid #d4d4d4;
+
+  padding: 20px;
+
+  -webkit-box-shadow:0 1px 4px rgba(0,0,0,0.065);
+  -moz-box-shadow:0 1px 4px rgba(0,0,0,0.065);
+  box-shadow:0 1px 4px rgba(0,0,0,0.065);
+
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.sub_header{
+  font-weight:normal;
+  font-size: 13px;
+  color: #222;
+  padding:10px;
+  margin-bottom: 10px;
+}
+
+.header_info_wrapper{
+  overflow:auto;
+}
+
+.header_image{
+  min-height:75px;
+  text-align:center;
+}

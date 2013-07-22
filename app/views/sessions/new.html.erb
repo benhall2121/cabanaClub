@@ -1,0 +1,19 @@
+
+<div class="bordered_wrapper span7 offset2">
+  <h3>
+  	Log in
+  </h3>
+
+  <%= form_tag sessions_path do %>
+   
+    <div class="field">
+      <%= text_field_tag :email, params[:email], :class => 'input-block-level', :placeholder => 'Email Address' %>
+    </div>
+    <div class="field">
+      <%= password_field_tag :password, '', :class => 'input-block-level', :placeholder => 'Password' %>
+    </div>
+    <div class="actions">
+      <%= submit_tag 'Log In', :class => 'btn btn-main' %> <%= link_to "Forgot Password?", new_password_reset_path %>
+    </div>
+  <% end %>
+</div>
