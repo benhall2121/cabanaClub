@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722164231) do
+ActiveRecord::Schema.define(:version => 20131202055531) do
 
   create_table "accounts", :force => true do |t|
     t.string   "account_number"
@@ -36,15 +36,20 @@ ActiveRecord::Schema.define(:version => 20130722164231) do
     t.string   "lname"
     t.string   "phone_number"
     t.integer  "account_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "password_hash"
     t.string   "password_salt"
     t.boolean  "admin"
-    t.boolean  "account_admin"
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.boolean  "super_admin"
+    t.boolean  "active",                 :default => true
   end
 
 end

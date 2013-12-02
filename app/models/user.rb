@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :account_id, :email, :fname, :lname, :phone_number, :password, :password_confirmation, :admin, :account_admin
+  attr_accessible :account_id, :email, :fname, :lname, :phone_number, :password, :password_confirmation, :admin, :address, :city, :state, :zip_code, :super_admin, :active
   
   belongs_to :account
 
