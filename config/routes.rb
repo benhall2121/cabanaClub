@@ -1,5 +1,15 @@
 CabanaClub::Application.routes.draw do
 
+  resources :meeting_notes
+
+  match "newMN" => "meeting_notes#newMN", :as => "newMN"
+
+  resources :meetings
+
+
+  resources :people
+
+
   resources :password_resets
 
   resources :contacts

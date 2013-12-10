@@ -1,0 +1,29 @@
+<%= form_for(@person, :html => { :multipart => true }) do |f| %>
+  <%= hidden_field_tag :type, params[:type] %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :name, :class => 'input-block-level', :placeholder => 'Full Name' %>
+  </div>
+  <div class="field">
+    <%= f.text_area :description, :class => 'input-block-level', :placeholder => 'Description of this person' %>
+  </div>
+  <div class="field">
+    Is a Lifeguard: <%= f.check_box :lifeguard, :style => "vertical-align:top;" %> 
+    &nbsp;&nbsp;&nbsp;&nbsp; 
+    Is on the Board: <%= f.check_box :board, :style => "vertical-align:top;"  %>
+  </div>
+  <div class="actions save_button_wrapper">
+    <%= f.submit 'Save', :class => 'btn btn-main' %>
+  </div>
+<% end %>

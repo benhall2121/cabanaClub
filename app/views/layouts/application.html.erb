@@ -25,9 +25,9 @@
           <%= link_to 'Del Prado Cabana Club', root_path, :class => 'brand' %>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="<%= 'active' if params[:controller] == 'users' && params[:action] == 'home' %>"><%= link_to 'Home', root_path %></li>
-              <li class="<%= 'active' if params[:controller] == 'users' && params[:action] == 'about' %>"><%= link_to 'About', about_path %></li>
-              <li class="<%= 'active' if params[:controller] == 'contacts' %>"><%= link_to 'Contact', new_contact_path %></li>
+              <li class="<%= 'active' if params[:controller] == 'people' && params[:type] == 'lifeguard' %>"><%= link_to 'Lifeguards', people_path(:type => "lifeguard") %></li>
+              <li class="<%= 'active' if params[:controller] == 'people' && params[:type] == 'board' %>"><%= link_to 'Board', people_path(:type => "board") %></li>
+              <li class="<%= 'active' if params[:controller] == 'meeting' %>"><%= link_to 'Meeting Notes', meetings_path() %></li>
             </ul>
             <% if current_user %>
             <ul class="nav pull-right">
@@ -57,7 +57,7 @@
 </div>
 
 <div class="main_margin container footer">
-    &#169; Del Prado Cabana Club <%= Time.now.year %>
+    &#169; Del Prado Cabana Club <%= Time.now.year %> &nbsp;&nbsp; | &nbsp;&nbsp; <%= link_to 'About', about_path %> &nbsp;&nbsp; | &nbsp;&nbsp; <%= link_to 'Contact', new_contact_path %>
 </div>
 
 </body>

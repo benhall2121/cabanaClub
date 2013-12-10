@@ -27,12 +27,20 @@ textarea{
   height:100px;
 }
 
-.footer{
+.footer, .footer a{
   font-size: 11px;
   color: #CCC;
   border-top:1px solid #EEE;
   text-align:center;
 }
+
+.footer a{
+  text-decoration: none;
+}
+
+.footer a:hover{
+  color: #AAA;
+ }
 
 .main_margin{
   margin-bottom: 10px;
@@ -136,3 +144,93 @@ textarea{
   min-height:75px;
   text-align:center;
 }
+
+.header_wrapper{
+  overflow:auto;
+  margin-bottom:15px;
+}
+
+.main_header{
+  font-size: 25px;
+  display:inline-block;
+}
+
+.person_left_column{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.person_right_column{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10px;
+  max-width: 78%;
+}
+
+.bordered_image{
+  border:1px solid #d4d4d4;
+  padding: 7px;
+
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.large_header_text{
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.button_wrapper{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.divider_div{
+  border-bottom: 1px solid #d4d4d4;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.save_button_wrapper{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.meeting_name{
+  color: #999;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.meeting_name:hover{
+  color: #333;
+  text-decoration: none;
+}
+
+.meeting_note_left_column{
+  display: inline-block;
+  width: 10%;
+  text-align: right;
+  padding-right: 5px;
+  color:#AAA;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.meeting_note_right_column{
+  display: inline-block;
+  max-width: 88%;
+  vertical-align: top;
+}
+
+.meeting_header{
+  font-size: 25px;
+}
+
+
+
+
+
+

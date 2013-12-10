@@ -1,0 +1,63 @@
+<div class="bordered_wrapper">
+
+  <div class="header_wrapper">
+    <div class="main_header">
+      
+    </div>
+
+    <div class="meeting_header">
+      <%= @meeting.meeting_name_date %>
+    </div>
+
+      <div class="meeting_notes_wrapper">
+        <% if !@meeting.description.blank? %>
+          <div class="meeting_description">
+            <div class="meeting_note_left_column">
+              Description: 
+            </div>
+            <div class="meeting_note_right_column">
+              <%= simple_format(@meeting.description) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+  </div>
+
+  
+  <div class="large_sub_header sub_header_padding" style="padding-left:20px; padding-right:20px;">
+	<%= form_tag newMN_path, :method => 'post', :id => "new_meeting_notes" do %>
+	  <%= hidden_field_tag :meeting_id, @meeting.id %>
+	  <div class="field">
+	    <%= text_area_tag :description, '', :class => 'input-block-level meeting_description', :placeholder => 'Meeting Note', :id => "meeting_description_text" %>
+	  </div>
+	  <div>
+	  	<%= submit_tag 'Save', :class => 'save_meeting_note btn btn-main' %>
+  	  </div>
+	<% end %>
+  </div>
+
+  <div class="meeting_notes_wrapper" id="all_meeting_notes">
+    <% @meeting.meeting_notes.order("created_at desc").each do |mn| %>
+      <%= render :partial => 'meeting_notes_box', :locals => { :mn => mn } %>
+    <% end %>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  
+  $('.save_meeting_note').click(function(){
+    
+    $.post($("#new_meeting_notes").attr("action"), $("#new_meeting_notes").serialize(), null, null);
+
+    $('#meeting_description_text').val("");
+
+    return false;
+  });
+
+});
+
+</script>

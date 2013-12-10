@@ -1,0 +1,54 @@
+<div class="bordered_wrapper">
+
+  <div class="header_wrapper">
+    <div class="main_header">
+      <% if !params[:type].nil? && params[:type] == "lifeguard" %>
+        Lifeguards
+      <% else %>
+        Board
+      <% end %>
+    </div>
+    <% if is_admin? %>
+      <div class="pull-right">
+        <%= link_to "New #{params[:type].nil? ? Person : params[:type].titleize}", new_person_path(:type => "#{params[:type]}"), :class => "btn btn-small btn-success" %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <% @people.each do |person| %>
+    <div class="person_wrapper">
+      <div class="person_left_column">
+        <div>
+          <%= image_tag person.avatar.url(:small), :class => "bordered_image" %>
+        </div>
+        <% if is_admin? %>
+          <div class="button_wrapper">
+            <%= link_to 'Edit', edit_person_path(person, :type => "#{params[:type]}"), :class => "btn btn-small btn-warning" %> &nbsp;&nbsp; <%= link_to 'Delete', person, method: :delete, data: { confirm: 'Are you sure?' }, type: "#{params[:type]}", :class => "btn btn-small btn-danger" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="person_right_column">
+        <div class="large_header_text">
+          <%= person.name %>
+        </div>
+        <div class="main_text">
+          <%= simple_format(person.description) %>
+        </div>
+      </div>
+    </div>
+
+    <% if @people.last.id != person.id %>
+      <div class="divider_div">
+      </div>
+
+    <% end %>
+
+  <% end %>
+
+</div>
+
+
+
+

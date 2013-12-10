@@ -1,0 +1,21 @@
+<%= form_for(@meeting_note) do |f| %>
+  <% if @meeting_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting_note.errors.count, "error") %> prohibited this meeting_note from being saved:</h2>
+
+      <ul>
+      <% @meeting_note.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,76 @@
+<div class="bordered_wrapper">
+
+  <div class="header_wrapper">
+    <div class="main_header">
+      Meeting Notes
+    </div>
+    <% if is_admin? %>
+      <div class="pull-right">
+        <%= link_to "New Meeting", new_meeting_path, :class => "btn btn-small btn-success" %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <% @meetings.each do |meet| %>
+    <div class="meeting_wrapper" style="overflow:auto;">
+      <div class="meeting_header">
+        <%= link_to "#{meet.meeting_name_date}", "#", :id => "#{meet.id}", :class => "meeting_name" %>
+        <% if is_admin? %>
+          <div class="pull-right">
+            <%= link_to "New Meeting Notes", meeting_path(meet), :class => "btn btn-small btn-success" %> &nbsp;&nbsp; <%= link_to 'Edit', edit_meeting_path(meet), :class => "btn btn-small btn-warning" %> &nbsp;&nbsp; <%= link_to 'Delete', meet, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="meeting_notes_wrapper" id="mn_<%= meet.id %>" style="display:none;">
+        <% if !meet.description.blank? %>
+          <div class="meeting_description">
+            <div class="meeting_note_left_column">
+              Description: 
+            </div>
+            <div class="meeting_note_right_column">
+              <%= simple_format(meet.description) %>
+            </div>
+          </div>
+        <% end %>
+        <% meet.meeting_notes.order(&:updated_at).each do |mn| %>
+          <%= render :partial => 'meeting_notes_box', :locals => { :mn => mn } %>
+        <% end %>
+
+        <% if meet.meeting_notes.empty? %>
+          <div class="meeting_note_wrapper">
+            <div class="meeting_note_left_column">
+              asd
+            </div>
+            <div class="meeting_note_right_column">
+              No notes have been added for this meeting.
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% if @meetings.last.id != meet.id %>
+      <div class="divider_div">
+      </div>
+    <% end %>
+
+  <% end %>
+
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $(".meeting_name").click(function(){
+    cu_id = $(this).attr("id");
+    $("#mn_" + cu_id).toggle();
+  });
+})
+
+</script>
+
+
+
+
