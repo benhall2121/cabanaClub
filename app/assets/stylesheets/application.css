@@ -27,6 +27,10 @@ textarea{
   height:100px;
 }
 
+#flash_notice{
+  color: #FFF;
+}
+
 .footer, .footer a{
   font-size: 11px;
   color: #CCC;
@@ -227,6 +231,11 @@ textarea{
 
 .meeting_header{
   font-size: 25px;
+}
+
+.nav li a{
+  padding: 10px 10px !important;
+  font-size: 12px;
 }
 
 

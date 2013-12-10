@@ -8,7 +8,9 @@ jQuery.ajaxSetup({
 
 
 $(document).ready(function() {
-
+  $('.not_created_yet').click(function(){
+  	alert("This page has not yet been created.");
+  });
 });
 
 
