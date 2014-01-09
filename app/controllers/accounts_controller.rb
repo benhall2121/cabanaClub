@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  before_filter :require_admin, :except => [:get_accounts]
+
   # GET /accounts
   # GET /accounts.json
   def index
@@ -79,5 +81,9 @@ class AccountsController < ApplicationController
       format.html { redirect_to accounts_url }
       format.json { head :no_content }
     end
+  end
+
+  def get_accounts
+    @accounts = Account.search(params[:search])
   end
 end

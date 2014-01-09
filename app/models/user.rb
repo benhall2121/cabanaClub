@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :account_id, :email, :fname, :lname, :phone_number, :password, :password_confirmation, :admin, :address, :city, :state, :zip_code, :super_admin, :active
+  attr_accessible :account_id, :email, :fname, :lname, :phone_number, :password, :password_confirmation, :admin, :address, :city, :state, :zip_code, :super_admin, :active, :customer_stripe_token
   
   belongs_to :account
+  has_many :payments
 
   attr_accessor :password
   before_save :encrypt_password
@@ -12,6 +13,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_presence_of :account_id
   
   scope :reset_token, lambda { |token| where("password_reset_token = ?", token) }
 
@@ -25,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    return self.first_name + ' ' + self.last_name
+    return self.fname + ' ' + self.lname
   end
   
   def encrypt_password
@@ -46,5 +48,18 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.base64.tr("+/", "-_")
     end while User.exists?(column => self[column])
+  end
+
+  def save_also_to_stripe
+    begin
+      customer = Stripe::Customer.create(description: account.address, email: email)
+      self.customer_stripe_token = customer.id
+      save!
+    rescue Stripe::InvalidRequestError => e
+      logger.error "Stripe error while creating customer: #{e.message}"
+      puts "message :: #{e.message}"
+      errors.add :base, "There was a problem with your credit card."
+      false
+    end
   end
 end

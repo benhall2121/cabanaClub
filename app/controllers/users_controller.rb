@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :require_admin, :only => [:index]
 
   def home
   end
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
+    @accounts = Account.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,7 +60,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     respond_to do |format|
-      if @user.save
+      if @user.save_also_to_stripe
         cookies[:auth_token] = @user.auth_token
         format.html { redirect_to @user, notice: 'Thanks for Signing up.' }
         format.json { render json: @user, status: :created, location: @user }

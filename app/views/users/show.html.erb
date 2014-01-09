@@ -1,28 +1,60 @@
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+<div class="bordered_wrapper">
 
-<p>
-  <b>Fname:</b>
-  <%= @user.fname %>
-</p>
+  <div class="header_wrapper">
+    <div class="main_header">
+      <%= @user.full_name %>
+    </div>
+    <div class="pull-right">
+      <%= link_to "Edit", edit_user_path(@user), :class => "btn btn-small btn-warning" %>
+      <%= link_to "Payment History", payments_path(), :class => "btn btn-small btn-success" %>
+      <%= link_to "Make a payment", new_payment_path(), :class => "btn btn-small btn-success" %>
+    </div>
+  </div>
 
-<p>
-  <b>Lname:</b>
-  <%= @user.lname %>
-</p>
+    <div class="meeting_wrapper" style="overflow:auto;">
+      
+      <div class="meeting_description">
+        <div class="meeting_note_left_column">
+          Email: 
+        </div>
+        <div class="meeting_note_right_column">
+          <%= @user.email %>
+        </div>
+      </div>
 
-<p>
-  <b>Phone number:</b>
-  <%= @user.phone_number %>
-</p>
+      <div class="divider_div"></div>
 
-<p>
-  <b>Account:</b>
-  <%= @user.account_id %>
-</p>
+      <div class="meeting_description">
+        <div class="meeting_note_left_column">
+          Phone Number: 
+        </div>
+        <div class="meeting_note_right_column">
+          <%= @user.phone_number %>
+        </div>
+      </div>
+
+      <div class="divider_div"></div>
+
+      <div class="meeting_description">
+        <div class="meeting_note_left_column">
+          Account: 
+        </div>
+        <div class="meeting_note_right_column">
+          <%= @user.account.address %><br/>
+          <%= @user.account.city %>, <%= @user.account.state %> <%= @user.account.zip %>
+        </div>
+      </div>
+
+      <div class="divider_div"></div>
+
+    </div>
+
+    
+    
+
+</div>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+
+

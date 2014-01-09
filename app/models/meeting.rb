@@ -4,6 +4,6 @@ class Meeting < ActiveRecord::Base
   has_many :meeting_notes, :dependent => :destroy
 
   def meeting_name_date
-  	return "#{self.meeting_date.strftime("%B %Y")} - #{self.title}"
+  	return "#{self.meeting_date.strftime("%B %Y") if !self.meeting_date.nil?} - #{self.title}"
   end
 end

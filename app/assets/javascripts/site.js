@@ -11,6 +11,11 @@ $(document).ready(function() {
   $('.not_created_yet').click(function(){
   	alert("This page has not yet been created.");
   });
+
+  $("#accounts_search input").keyup(function() {
+    $.get($("#accounts_search").attr("action"), $("#accounts_search").serialize(), null, "script");
+    return false;
+  });
 });
 
 

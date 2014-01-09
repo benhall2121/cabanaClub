@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131210025027) do
+ActiveRecord::Schema.define(:version => 20140109072941) do
 
   create_table "accounts", :force => true do |t|
     t.string   "account_number"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(:version => 20131210025027) do
     t.date     "meeting_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.float    "amount"
+    t.string   "stripe_id"
+    t.boolean  "paid_by_check"
+    t.integer  "user_id"
+    t.integer  "account_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "user_description"
   end
 
   create_table "people", :force => true do |t|
@@ -78,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20131210025027) do
     t.string   "zip_code"
     t.boolean  "super_admin"
     t.boolean  "active",                 :default => true
+    t.string   "customer_stripe_token"
   end
 
 end

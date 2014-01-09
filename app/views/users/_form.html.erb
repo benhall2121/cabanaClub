@@ -10,41 +10,92 @@
       </ul>
     </div>
   <% end %>
+  
+  <%= f.hidden_field :account_id, :id => "account_id" %>
 
-  <div class="field">
-    <%= f.text_field :email, :class => 'input-block-level', :placeholder => "Email" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :fname, :class => 'input-block-level', :placeholder => "First Name" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :lname, :class => 'input-block-level', :placeholder => "Last Name" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :phone_number, :class => 'input-block-level', :placeholder => 'Phone Number' %>
-  </div>
-  <div class="field">
-    <%= f.text_field :address, :class => 'input-block-level', :placeholder => 'Address' %>
-  </div>
-  <div class="field">
-    <%= f.text_field :city, :class => 'input-block-level', :placeholder => 'City' %>
-  </div>
-  <div class="field">
-    <%= f.text_field :state, :class => 'input-block-level', :placeholder => 'State' %>
-  </div>
-  <div class="field">
-    <%= f.text_field :zip_code, :class => 'input-block-level', :placeholder => 'Zip Code' %>
-  </div>
-  <div class="field">
-    <%= f.password_field :password, :class => 'input-block-level', :placeholder => 'Password' %>
-  </div>
-  <div class="field">
-    <%= f.password_field :password_confirmation, :class => 'input-block-level', :placeholder => 'Password Confirmation' %>
-  </div>
+  <div>
+    
+    <div style="width:46%; display:inline-block;">
+  
+      <div class="field">
+        <%= f.text_field :email, :class => 'input-block-level', :placeholder => "Email" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :fname, :class => 'input-block-level', :placeholder => "First Name" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :lname, :class => 'input-block-level', :placeholder => "Last Name" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :phone_number, :class => 'input-block-level', :placeholder => 'Phone Number' %>
+      </div>
+    <!--   <div class="field">
+        <%= f.text_field :address, :class => 'input-block-level', :placeholder => 'Address' %>
+      </div>
+      <div class="field">
+        <%= f.text_field :city, :class => 'input-block-level', :placeholder => 'City' %>
+      </div>
+      <div class="field">
+        <%= f.text_field :state, :class => 'input-block-level', :placeholder => 'State' %>
+      </div>
+      <div class="field">
+        <%= f.text_field :zip_code, :class => 'input-block-level', :placeholder => 'Zip Code' %>
+      </div> -->
+      <div class="field">
+        <%= f.password_field :password, :class => 'input-block-level', :placeholder => 'Password' %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password_confirmation, :class => 'input-block-level', :placeholder => 'Password Confirmation' %>
+      </div>
+
+
   <div class="actions">
     <%= f.submit 'Sign Up', :class => 'btn btn-main' %>
   </div>
 <% end %>
 
+    </div>
 
+    <% if params[:action] != "edit" %>
+    <div style="margin-left:20px;width:49%; display:inline-block; vertical-align:top;">
+      <%= form_tag get_accounts_path, :method => 'get', :id => "accounts_search" do %>
+        <div>
+          <h5>
+            Select An Address:
+          </h5>
+        </div>
+        <div>
+          <%= text_field_tag :search, params[:search], :placeholder => "Search for an address" %>
+        </div>
+        <div id="accounts"><%= render 'accounts/accounts' %></div>
+      <% end %>
+    </div>
+    <% end %>
+  
+  </div>
+
+
+<% if params[:action] != "edit" %>
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $("input[name=account]:radio").change(function () {
+    setAccountId();
+  });
+
+  $( "#new_user" ).submit(function( event ) {
+    setAccountId();
+  });
+
+  setAccountId();
+
+});
+
+function setAccountId(){
+  var selected = $("input[name=account]:radio:checked");
+  $("#account_id").val(selected.val());
+}
+
+</script>
+<% end %>
 

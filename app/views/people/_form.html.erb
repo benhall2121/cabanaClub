@@ -19,6 +19,9 @@
     <%= f.text_area :description, :class => 'input-block-level', :placeholder => 'Description of this person' %>
   </div>
   <div class="field">
+    Image: <%= f.file_field :avatar, :class => 'input-block-level' %>
+  </div>
+  <div class="field">
     Is a Lifeguard: <%= f.check_box :lifeguard, :style => "vertical-align:top;" %> 
     &nbsp;&nbsp;&nbsp;&nbsp; 
     Is on the Board: <%= f.check_box :board, :style => "vertical-align:top;"  %>

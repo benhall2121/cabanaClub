@@ -1,0 +1,33 @@
+<div class="bordered_wrapper span12">
+  <div class="header_wrapper">
+    <div class="main_header">
+      Payment History
+    </div>
+    <div class="pull-right">
+      <%= link_to "Make a payment", new_payment_path(), :class => "btn btn-small btn-success" %>
+    </div>
+  </div>
+
+
+
+
+<table class="table table-condensed">
+  <tr>
+    <th>Date Paid</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Confirmation Number</th>
+  </tr>
+
+  <% @payments.each do |payment| %>
+    <tr>
+      <td><%= payment.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("%Y-%m-%d") %></td>
+      <td><%= number_to_currency(payment.amount) %></td>
+      <td><%= payment.user_description %></td>
+      <td><%= payment.stripe_id %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+</div>

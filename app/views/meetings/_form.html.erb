@@ -18,7 +18,7 @@
     <%= f.text_area :description, :class => 'input-block-level', :placeholder => 'Description of this meeting' %>
   </div>
   <div class="field">
-    <%= f.text_field :title, :class => 'input-block-level', :value => Date.today %>
+    <%= f.text_field :meeting_date, :class => 'input-block-level', :value => Date.today %>
   </div>
   <div class="actions save_button_wrapper">
     <%= f.submit 'Save', :class => 'btn btn-main' %>

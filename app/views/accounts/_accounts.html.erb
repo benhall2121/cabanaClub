@@ -1,0 +1,10 @@
+<% if !@accounts.nil? %>
+	<% @accounts.each do |account| %>
+	  <% if account.users.count == 0 %>
+	    <div>
+	      <%= radio_button_tag 'account', account.id, true, :style => "vertical-align: top;" %> <%= account.address %>
+	    </div>
+	  <% end %>
+
+	<% end %>
+<% end %>

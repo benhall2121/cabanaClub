@@ -1,5 +1,8 @@
 CabanaClub::Application.routes.draw do
 
+  resources :payments
+
+
   resources :meeting_notes
 
   match "newMN" => "meeting_notes#newMN", :as => "newMN"
@@ -25,5 +28,7 @@ CabanaClub::Application.routes.draw do
   resources :users
   resources :sessions
   resources :accounts
+
+  get "get_accounts" => "accounts#get_accounts", :as => "get_accounts"
 
 end

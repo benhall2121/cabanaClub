@@ -4,18 +4,7 @@
     Sign Up
   </h3>
 
-  <%= form_for @user do |f| %>
-    <% if @user.errors.any? %>
-      <div class="error_messages">
-        <h4>Form is invalid</h4>
-        <ul>
-          <% for message in @user.errors.full_messages %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+
 
 	<%= render 'form' %>
-  <% end %>
 </div>
