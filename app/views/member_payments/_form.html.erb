@@ -1,0 +1,38 @@
+<%= form_for(@member_payment) do |f| %>
+  <% if @member_payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member_payment.errors.count, "error") %> prohibited this member_payment from being saved:</h2>
+
+      <ul>
+      <% @member_payment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= f.text_field :name, :class => 'input-block-level', :placeholder => "Payment Name" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :cost, :class => 'input-block-level', :placeholder => "Amount to Charge" %>
+  </div>
+  <div class="field" style="margin-bottom:10px;">
+    Active: <%= f.check_box :active %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit 'Save', :class => 'btn btn-main' %>
+  </div>
+
+<% end %>
+
+
+
+
+
+
+
+

@@ -2,19 +2,43 @@
 
   <div class="header_wrapper">
     <div class="main_header">
-      <% if !params[:type].nil? && params[:type] == "lifeguard" %>
-        Lifeguards
+
+      <% if !@staticpage.nil? %>
+        <%= @staticpage.page_title %>
       <% else %>
-        Board
+        <% if !params[:type].nil? && params[:type] == "lifeguard" %>
+          Lifeguards
+        <% else %>
+          Board
+        <% end %>
       <% end %>
     </div>
     <% if is_admin? %>
       <div class="pull-right">
         <%= link_to "New #{params[:type].nil? ? Person : params[:type].titleize}", new_person_path(:type => "#{params[:type]}"), :class => "btn btn-small btn-success" %>
+
+
+
+        <% if @staticpage.nil? %>
+          <% if !params[:type].nil? && params[:type] == "lifeguard" %>
+            <%= link_to "Edit Page", new_staticpage_path(:page_name => "PeopleLifeguard", :page_url => "people?type=lifeguard"), :class => "btn btn-small btn-success" %>
+          <% else %>
+            <%= link_to "Edit Page", new_staticpage_path(:page_name => "PeopleBoard", :page_url => "people?type=board"), :class => "btn btn-small btn-success" %>
+          <% end %> 
+        <% else %>
+          <%= link_to "Edit Page", edit_staticpage_path(@staticpage), :class => "btn btn-small btn-success" %>
+        <% end %>
+
       </div>
     <% end %>
   </div>
 
+  
+  <% if !@staticpage.nil? %>
+    <div style="margin:15px 0;">
+      <%= simple_format(@staticpage.page_body) %>
+    </div>
+  <% end %>
 
   <% @people.each do |person| %>
     <div class="person_wrapper">

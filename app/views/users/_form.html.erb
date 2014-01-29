@@ -15,8 +15,8 @@
 
   <div>
     
-    <div style="width:46%; display:inline-block;">
-  
+    <!-- <div style="width:46%; display:inline-block;"> -->
+    <div>
       <div class="field">
         <%= f.text_field :email, :class => 'input-block-level', :placeholder => "Email" %>
       </div>
@@ -29,7 +29,7 @@
       <div class="field">
         <%= f.text_field :phone_number, :class => 'input-block-level', :placeholder => 'Phone Number' %>
       </div>
-    <!--   <div class="field">
+      <div class="field">
         <%= f.text_field :address, :class => 'input-block-level', :placeholder => 'Address' %>
       </div>
       <div class="field">
@@ -40,13 +40,19 @@
       </div>
       <div class="field">
         <%= f.text_field :zip_code, :class => 'input-block-level', :placeholder => 'Zip Code' %>
-      </div> -->
+      </div>
       <div class="field">
         <%= f.password_field :password, :class => 'input-block-level', :placeholder => 'Password' %>
       </div>
       <div class="field">
         <%= f.password_field :password_confirmation, :class => 'input-block-level', :placeholder => 'Password Confirmation' %>
       </div>
+
+      <% if is_admin? %>
+        <div class="field" style="margin-bottom:10px;">
+          <%= f.check_box :admin %> Admin
+        </div>
+      <% end %>
 
 
   <div class="actions">
@@ -55,7 +61,7 @@
 <% end %>
 
     </div>
-
+<!-- 
     <% if params[:action] != "edit" %>
     <div style="margin-left:20px;width:49%; display:inline-block; vertical-align:top;">
       <%= form_tag get_accounts_path, :method => 'get', :id => "accounts_search" do %>
@@ -98,4 +104,4 @@ function setAccountId(){
 
 </script>
 <% end %>
-
+ -->

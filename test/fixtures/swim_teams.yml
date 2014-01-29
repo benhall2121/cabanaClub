@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  start_age: 1
+  end_age: 1
+  start_date: 2014-01-13 10:03:38
+  end_date: 2014-01-13 10:03:38
+  num_allowed_participants: 1
+  price_per_participant: 1.5
+
+two:
+  name: MyString
+  description: MyText
+  start_age: 1
+  end_age: 1
+  start_date: 2014-01-13 10:03:38
+  end_date: 2014-01-13 10:03:38
+  num_allowed_participants: 1
+  price_per_participant: 1.5

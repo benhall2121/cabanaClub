@@ -1,0 +1,58 @@
+
+<div class="bordered_wrapper">
+  <div>
+    <h3>
+      Users
+    <div class="pull-right">
+        <%= link_to "New Membership Payment", new_member_payment_path(), :class => "btn btn-small btn-success" %>
+    </div>
+    </h3>
+    
+  </div>
+  
+  <div class="row">
+    <div class="span11">
+
+      <table class="table table-condensed">
+
+        <tr>
+          <th>Name</th>
+          <th>Cost</th>
+          <th>Active</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <% @member_payments.each do |member_payment| %>
+          <tr>
+            <td><%= member_payment.name %></td>
+            <td><%= member_payment.cost %></td>
+            <td><%= member_payment.active %></td>
+            <td><%= link_to 'Show', member_payment %></td>
+            <td><%= link_to 'Edit', edit_member_payment_path(member_payment) %></td>
+            <td><%= link_to 'Destroy', member_payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

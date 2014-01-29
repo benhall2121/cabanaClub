@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @member_payment.name %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @member_payment.cost %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @member_payment.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_member_payment_path(@member_payment) %> |
+<%= link_to 'Back', member_payments_path %>

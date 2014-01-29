@@ -1,0 +1,74 @@
+<%= form_for(@swim_team, :html => { :multipart => true }) do |f| %>
+  <% if @swim_team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@swim_team.errors.count, "error") %> prohibited this swim_team from being saved:</h2>
+
+      <ul>
+      <% @swim_team.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :name, :class => 'input-block-level', :placeholder => 'Swim Team Name' %>
+  </div>
+  <div class="field">
+    <%= f.text_area :description, :class => 'input-block-level', :placeholder => 'Description of Swim Team' %>
+  </div>
+  <div class="field">
+    Start Age: <%= f.number_field :start_age %>
+  </div>
+  <div class="field">
+    End Age: <%= f.number_field :end_age %>
+  </div>
+  <div class="field">
+    Start Date: <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    End Date: <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    Start Time: <%= f.time_select :start_time %>
+  </div>
+  <div class="field">
+    End Time: <%= f.time_select :end_time %>
+  </div>
+
+  <div class="field">
+    Days of the Week: <br/>
+    &nbsp;&nbsp;&nbsp;Monday: <%= f.check_box :mon %>
+    &nbsp;&nbsp;&nbsp;Tuesday: <%= f.check_box :tues %>
+    &nbsp;&nbsp;&nbsp;Wednesday: <%= f.check_box :wed %>
+    &nbsp;&nbsp;&nbsp;Thursday: <%= f.check_box :thurs %>
+    &nbsp;&nbsp;&nbsp;Friday: <%= f.check_box :fri %>
+    &nbsp;&nbsp;&nbsp;Saturday: <%= f.check_box :sat %>
+    &nbsp;&nbsp;&nbsp;Sunday: <%= f.check_box :sun %>
+  </div>
+  <div class="field">
+    Number of Allowed Participants: <%= f.number_field :num_allowed_participants %>
+  </div>
+  <div class="field">
+    Price Per Participant: <%= f.text_field :price_per_participant %>
+  </div>
+  <div class="field">
+    Image: <%= f.file_field :photo %>
+  </div>
+  <div class="field">
+    Active: <%= f.check_box :active %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= f.submit 'Save', :class => 'btn btn-main' %>
+  </div>
+<% end %>
+
+
+
+
+
+
+

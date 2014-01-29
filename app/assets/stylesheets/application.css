@@ -31,6 +31,10 @@ textarea{
   color: #FFF;
 }
 
+.footer{
+  margin-top:20px;
+}
+
 .footer, .footer a{
   font-size: 11px;
   color: #CCC;
@@ -238,7 +242,14 @@ textarea{
   font-size: 12px;
 }
 
+.swim_team_table{
+  font-size:12px;
+}
 
+.swim_team_table tr th, .swim_team_table tr td{
+  text-align: center;
+  padding:5px;
+}
 
 
 

@@ -1,31 +1,37 @@
-<h1>Listing users</h1>
+<div class="bordered_wrapper">
+  <h3>
+    Users
+  </h3>
+  
+  <div class="row">
+    <div class="span11">
 
-<table>
-  <tr>
-    <th>Email</th>
-    <th>Fname</th>
-    <th>Lname</th>
-    <th>Phone number</th>
-    <th>Account</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <table class="table table-condensed">
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.email %></td>
-    <td><%= user.fname %></td>
-    <td><%= user.lname %></td>
-    <td><%= user.phone_number %></td>
-    <td><%= user.account_id %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <tr>
+          <th>Email</th>
+          <th>Fname</th>
+          <th>Lname</th>
+          <th>Phone number</th>
+          <th>Admin</th>
+          <th></th>
+          <th></th>
+        </tr>
 
-<br />
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+            <td><%= user.fname %></td>
+            <td><%= user.lname %></td>
+            <td><%= user.phone_number %></td>
+            <td><%= user.admin ? 'Yes' : '' %></td>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
 
-<%= link_to 'New User', new_user_path %>
+      </table>
+    </div>
+
+  </div>
+</div>

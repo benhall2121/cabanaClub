@@ -16,25 +16,45 @@
   <%= f.hidden_field :amount %>
   <%= f.hidden_field :user_description %>
 
-  <!-- <div style="margin-bottom:20px;">
-    Amount Owed: 
-  </div> -->
+  <table class="table table-condensed">
+    <!-- Membership Payments -->
+    <% if !@membership_payment.empty? %>
+      <tr>
+        <th class="sub_header" colspan=3>Membership Payments</th>
+      </tr>
+      <% @membership_payment.each do |mp| %>
+        <tr>
+          <td><%= mp.name %></td>
+          <td><%= number_to_currency(mp.cost) %></td>
+          <td style="text-align:center;"><%= link_to 'Remove', new_payment_path(:model_id => mp.id, :model_name => mp.class.name), :class => "btn btn-small btn-warning" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <!-- END Membership Payments -->
+
+    <!-- Swim Teams -->
+    <% if !@swim_team.empty? %>
+      <tr>
+        <th class="sub_header" colspan=3>Swim Teams</th>
+      </tr>
+      <% @swim_team.each do |st| %>
+        <tr>
+          <td><%= st.name %></td>
+          <td><%= number_to_currency(st.price_per_participant) %></td>
+          <td style="text-align:center;"><%= link_to 'Remove', new_payment_path(:model_id => st.id, :model_name => st.class.name), :class => "btn btn-small btn-warning" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <!-- END Swim Teams -->
+
+    <tr>
+      <td style="text-align:right; font-weight:bold;">Total:</td>
+      <td><%= number_to_currency(@payment.amount) %></td>
+      <td style="text-align:center;"><%= link_to 'Remove All', new_payment_path(:clear_all => "clear_all"), :class => "btn btn-small btn-warning" %></td>
+    </tr>
+  </table>
 
   <div>
-    <!-- <div class="field">
-      <%= label_tag :amount, "Amount to Pay" %>
-      <%= f.text_field :amount, :class => 'input-block-level', :id => "amount_to_pay" %>
-    </div> -->
-
-    <!-- <div class="field">
-      <%= label_tag :user_description, "Description (optional)" %>
-      <%= f.text_field :user_description, :class => 'input-block-level' %>
-    </div> -->
-
-    <div class="field" style="margin-bottom:20px;">
-      <%= radio_button_tag 'amount_to_pay', '300.00', true, :style => "vertical-align: top;" %> Pay $300.00 for the year <%= Date.today.strftime("%Y") %>
-    </div>
-
     <div class="field">
       <%= label_tag :name, "Cardholder Name" %>
       <%= text_field_tag :name, nil, name: nil %>
@@ -66,24 +86,8 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-  $("input[name=amount_to_pay]:radio").change(function () {
-    changeAmount();
-  });
-
-  changeAmount();
 });
 
-
-function changeAmount(){
-  var selected = $("input[name=amount_to_pay]:radio:checked");
-  $("#payment_amount").val(selected.val());
-
-  if(selected.val() > 30){
-    $("#payment_user_description").val('Paying $' +selected.val()+ ' for the year <%= Date.today.strftime("%Y") %>.');
-  } else {
-    $("#payment_user_description").val('Paying $' +selected.val()+ ' for the month <%= Date.today.strftime("%B") %> <%= Date.today.strftime("%Y") %>.');
-  }
-}
 
 var subscription;
 

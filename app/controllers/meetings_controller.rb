@@ -3,6 +3,9 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
+
+    @staticpage = Staticpage.find(:first, :conditions => ["page_name = ?", "MeetingNotes"]) 
+    
     @meetings = Meeting.find(:all, :order => ["meeting_date desc"])
 
     respond_to do |format|

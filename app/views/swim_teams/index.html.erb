@@ -1,0 +1,142 @@
+<div class="bordered_wrapper">
+
+  <div class="header_wrapper">
+    <div class="main_header">
+      <% if !@staticpage.nil? %>
+        <%= @staticpage.page_title %>
+      <% else %>
+        Swim Team
+      <% end %>
+    </div>
+    <% if is_admin? %>
+      <div class="pull-right">
+        <%= link_to "New Swim Team", new_swim_team_path(), :class => "btn btn-small btn-success" %>
+
+        <% if @staticpage.nil? %>
+          <%= link_to "Edit Page", new_staticpage_path(:page_name => "SwimTeam", :page_url => "swim_teams"), :class => "btn btn-small btn-success" %>
+        <% else %>
+          <%= link_to "Edit Page", edit_staticpage_path(@staticpage), :class => "btn btn-small btn-success" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if !@staticpage.nil? %>
+    <div style="margin:15px 0;">
+      <%= simple_format(@staticpage.page_body) %>
+    </div>
+  <% end %>
+
+  <div class="person_wrapper">
+    <% if @swim_teams.count > 0 %>
+      <% @swim_teams.each do |swim_team| 
+
+          inactive_css = ""
+
+          if !swim_team.active? || swim_team.start_date < Date.today
+            inactive_css = "border:1px solid red;"
+          end
+
+          %>
+        <div style="<%= inactive_css %> margin-bottom:10px;">
+          <div class="person_left_column">
+            <div>
+              <%= image_tag swim_team.photo.url(:small), :class => "bordered_image" %>
+            </div>
+            <div class="button_wrapper">
+              <% if current_user %>
+                <input class="register_for_class" id="<%= swim_team.id.to_s + ',' + swim_team.class.name %>" type="checkbox" /> Add class to cart
+              <% else %>
+                <%= link_to 'Add class to cart', log_in_path(), :class => "btn btn-small btn-success" %>
+              <% end %>
+            </div>
+            <% if is_admin? %>
+              <div class="button_wrapper">
+                <%= link_to 'Edit', edit_swim_team_path(swim_team), :class => "btn btn-small btn-warning" %> &nbsp;&nbsp; <%= link_to 'Delete', swim_team, method: :delete, data: { confirm: 'Are you sure?' }, type: "#{params[:type]}", :class => "btn btn-small btn-danger" %>
+              </div>
+            <% end %>
+            <% if !swim_team.active %>
+              <div style="color:red; font-weight:bold; text-align:center;">
+                INACTIVE
+              </div>
+            <% end %>
+
+            <% if swim_team.start_date < Date.today %>
+              <div style="color:red; font-weight:bold; text-align:center;">
+                Swim Team Started
+              </div>
+            <% end %>
+          </div>
+
+
+          <div class="person_right_column">
+            <table class="table table-condensed swim_team_table" style="width:100%;">
+              <tr>
+                <th style="text-align:left;">Name</th>
+                <th>Dates</th>
+                <th>Days</th>
+                <th>Time</th>
+                <th>Age</th>
+                <th>Price</th>
+              </tr>
+              <tr>
+                <td class="span4" style="text-align:left;"><%= swim_team.name %></td>
+                <td class="span2"><%= swim_team.start_date.strftime("%m/%d") %> - <%= swim_team.end_date.strftime("%m/%d") %></td>
+                <td class="span1">
+                  <% if swim_team.mon? %>Monday<% end %>
+                  <% if swim_team.tues? %>Tuesday<% end %>
+                  <% if swim_team.wed? %>Wednesday<% end %>
+                  <% if swim_team.thurs? %>Thursday<% end %>
+                  <% if swim_team.fri? %>Friday<% end %>
+                  <% if swim_team.sat? %>Saturday<% end %>
+                  <% if swim_team.sun? %>Sunday<% end %>
+                </td>
+                <td class="span3"><%= swim_team.start_time.strftime("%I:%M %p") %> - <%= swim_team.end_time.strftime("%I:%M %p")  %></td>
+                <td class="span1"><%= swim_team.start_age %> - <%= swim_team.end_age %></td>
+                <td class="span1"><%= number_to_currency(swim_team.price_per_participant) %></td>
+              </tr>
+              <tr>
+                <td colspan="6" style="text-align:left;"><%= simple_format(swim_team.description) %></td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="pull-right">
+        <% if current_user %>
+          <%= link_to 'CheckOut', new_payment_path(), :class => "btn btn-small btn-success" %>
+        <% end %>
+      </div>
+    <% else %>
+      <div style="margin-bottom:10px;">
+        No Active Swim Teams
+      </div>
+    <% end %>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

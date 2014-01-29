@@ -13,7 +13,18 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_presence_of :account_id
+  validates_presence_of :address
+  validates_presence_of :city
+  validates_presence_of :state
+  validates_presence_of :zip_code
+  #validates_presence_of :account_id
+
+  has_many :membershippayments
+  has_many :member_payments, :through => :membershippayments
+
+  has_many :userswimteams
+  has_many :swim_teams, :through => :userswimteams
+
   
   scope :reset_token, lambda { |token| where("password_reset_token = ?", token) }
 
@@ -50,9 +61,14 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+  def user_address
+    user_address = self.address + " " + self.city + ", " + self.state + " " + self.zip_code
+    return user_address
+  end
+
   def save_also_to_stripe
     begin
-      customer = Stripe::Customer.create(description: account.address, email: email)
+      customer = Stripe::Customer.create(description: user_address, email: email)
       self.customer_stripe_token = customer.id
       save!
     rescue Stripe::InvalidRequestError => e

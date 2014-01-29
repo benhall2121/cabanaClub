@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @swim_team.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @swim_team.description %>
+</p>
+
+<p>
+  <b>Start age:</b>
+  <%= @swim_team.start_age %>
+</p>
+
+<p>
+  <b>End age:</b>
+  <%= @swim_team.end_age %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @swim_team.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @swim_team.end_date %>
+</p>
+
+<p>
+  <b>Num allowed participants:</b>
+  <%= @swim_team.num_allowed_participants %>
+</p>
+
+<p>
+  <b>Price per participant:</b>
+  <%= @swim_team.price_per_participant %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%= image_tag @swim_team.photo.url(:small) %>
+</p>
+
+
+<%= link_to 'Edit', edit_swim_team_path(@swim_team) %> |
+<%= link_to 'Back', swim_teams_path %>

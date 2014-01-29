@@ -8,9 +8,11 @@ class PeopleController < ApplicationController
     if !params[:type].nil? && params[:type] == "lifeguard"
       conditions_string = "lifeguard = true"
       params[:type] = "lifeguard"
+      @staticpage = Staticpage.find(:first, :conditions => ["page_name = ?", "PeopleLifeguard"]) 
     else
       conditions_string = "board = true"
       params[:type] = "board"
+      @staticpage = Staticpage.find(:first, :conditions => ["page_name = ?", "PeopleBoard"]) 
     end
 
     @people = Person.find(:all, :conditions => [conditions_string])

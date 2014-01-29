@@ -1,0 +1,35 @@
+<div class="bordered_wrapper">
+  <h3>
+    Del Prado Cabana Club Admin Page
+  </h3>
+  
+  <div class="row">
+    <div class="span11">
+
+      <table class="table table-condensed">
+        <tr>
+          <td><%= link_to "Users", users_path() %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "Lifeguards", people_path(:type => "lifeguard") %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "Board", people_path(:type => "board") %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "Meeting Notes", meetings_path() %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "Swim Teams", swim_teams_path() %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "Membership Payments", member_payments_path() %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "Payments Made", payments_made_path() %></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+</div>

@@ -12,6 +12,29 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(:first, :conditions => ['auth_token = ?', cookies[:auth_token]]) if cookies[:auth_token]
   end
 
+  def get_shopping_cart
+    session[:shopping_cart] ||= []
+  end
+
+  def add_to_shopping_cart(model_id, model_name)
+    sc = get_shopping_cart
+    index = sc.index([model_id, model_name])
+    if !index
+      sc << [model_id, model_name]
+    end
+  end
+
+  def delete_one_item_from_shopping_cart(model_id, model_name)
+    index = session[:shopping_cart].index([model_id, model_name])
+    if !index.nil?
+      session[:shopping_cart].delete_at(index)
+    end
+  end
+
+  def delete_all_from_shopping_cart
+    session[:shopping_cart] = nil
+  end
+
   def require_login
     unless current_user
       redirect_to root_path, notice: 'You must be logged in to do that.'

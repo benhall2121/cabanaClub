@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Page name:</b>
+  <%= @staticpage.page_name %>
+</p>
+
+<p>
+  <b>Page title:</b>
+  <%= @staticpage.page_title %>
+</p>
+
+<p>
+  <b>Page body:</b>
+  <%= @staticpage.page_body %>
+</p>
+
+
+<%= link_to 'Edit', edit_staticpage_path(@staticpage) %> |
+<%= link_to 'Back', staticpages_path %>

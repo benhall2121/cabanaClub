@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
-  before_filter :require_admin, :only => [:index]
+  before_filter :require_admin, :only => [:index, :admin]
+  before_filter :require_login, :only => [:add_item_to_shopping_cart, :remove_item_from_shopping_cart, :remove_all_items_from_shopping_cart]
 
   def home
   end
 
   def about
+  end
+
+  def admin
   end
 
   # GET /users
@@ -21,11 +25,23 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @staticpage = Staticpage.find(:first, :conditions => ["page_name = ?", "UserPayment"]) 
+    
     if is_admin?
       @user = User.find(params[:id])
     else
       @user = User.find(current_user)
     end
+
+    @payments_need_to_make = nil
+
+    if @user == current_user
+
+      users_payments = current_user.membershippayments.all(:select => :member_payment_id).collect(&:member_payment_id)
+
+      @payments_need_to_make = MemberPayment.find(:all, :conditions => ["id not in (?)", users_payments])
+    end
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -78,6 +94,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     else
       @user = User.find(current_user)
+      @user.admin = @user.admin
     end
 
     respond_to do |format|
@@ -108,5 +125,23 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  def add_item_to_shopping_cart
+    add_to_shopping_cart(params[:model_id], params[:model_name])
+
+    render :nothing => true
+  end
+
+  def remove_item_from_shopping_cart
+    delete_one_item_from_shopping_cart(params[:model_id], params[:model_name])
+
+    render :nothing => true
+  end
+
+  def remove_all_items_from_shopping_cart
+    delete_all_from_shopping_cart
+
+    render :nothing => true
   end
 end

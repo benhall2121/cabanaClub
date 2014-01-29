@@ -2,14 +2,29 @@
 
   <div class="header_wrapper">
     <div class="main_header">
-      Meeting Notes
+      <% if !@staticpage.nil? %>
+        <%= @staticpage.page_title %>
+      <% else %>
+        Meeting Notes
+      <% end %>
     </div>
     <% if is_admin? %>
       <div class="pull-right">
         <%= link_to "New Meeting", new_meeting_path, :class => "btn btn-small btn-success" %>
+        <% if @staticpage.nil? %>
+          <%= link_to "Edit Page", new_staticpage_path(:page_name => "MeetingNotes", :page_url => "meetings"), :class => "btn btn-small btn-success" %>
+        <% else %>
+          <%= link_to "Edit Page", edit_staticpage_path(@staticpage), :class => "btn btn-small btn-success" %>
+        <% end %>
       </div>
     <% end %>
   </div>
+
+  <% if !@staticpage.nil? %>
+    <div style="margin:15px 0;">
+      <%= simple_format(@staticpage.page_body) %>
+    </div>
+  <% end %>
 
 
   <% @meetings.each do |meet| %>

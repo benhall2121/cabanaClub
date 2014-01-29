@@ -16,6 +16,33 @@ $(document).ready(function() {
     $.get($("#accounts_search").attr("action"), $("#accounts_search").serialize(), null, "script");
     return false;
   });
+
+  $(".register_for_class").click(function(){
+  	thisId = $(this).attr("id").split(",");
+  	
+  	if($(this).is(':checked')){
+  	  url = "/add_item_to_shopping_cart"
+  	} else {
+  	  url = "/remove_item_from_shopping_cart"
+  	}
+
+
+  	$.ajax({
+      url: url,
+      type: 'post',
+      data: {
+        model_id: thisId[0],
+        model_name: thisId[1]
+      },
+      success: function(r) {
+        console.log("Success");
+      },
+      error: function() {
+        console.log("Failed to add Item to Cart");
+      }
+    });
+
+  });
 });
 
 

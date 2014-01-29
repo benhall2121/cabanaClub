@@ -35,7 +35,14 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    columnize (0.3.6)
     daemons (1.1.9)
+    debugger (1.6.2)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
     hike (1.2.3)
@@ -105,6 +112,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
+  debugger
   mysql2 (> 0.3)
   paperclip (= 2.8.0)
   rails (= 3.2.12)

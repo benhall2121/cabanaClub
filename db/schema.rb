@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140109072941) do
+ActiveRecord::Schema.define(:version => 20140129060748) do
 
   create_table "accounts", :force => true do |t|
     t.string   "account_number"
@@ -45,6 +45,39 @@ ActiveRecord::Schema.define(:version => 20140109072941) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "member_payments", :force => true do |t|
+    t.string   "name"
+    t.float    "cost"
+    t.boolean  "active"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "members", :force => true do |t|
+    t.string   "name"
+    t.date     "birthdate"
+    t.boolean  "gender"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "members_swim_teams", :force => true do |t|
+    t.integer  "swim_team_id"
+    t.integer  "member_id"
+    t.integer  "payment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "membershippayments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "member_payment_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "payment_id"
+  end
+
   create_table "payments", :force => true do |t|
     t.float    "amount"
     t.string   "stripe_id"
@@ -69,6 +102,42 @@ ActiveRecord::Schema.define(:version => 20140109072941) do
     t.datetime "avatar_updated_at"
   end
 
+  create_table "staticpages", :force => true do |t|
+    t.string   "page_name"
+    t.string   "page_title"
+    t.text     "page_body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "page_url"
+  end
+
+  create_table "swim_teams", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "start_age"
+    t.integer  "end_age"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "num_allowed_participants"
+    t.float    "price_per_participant"
+    t.boolean  "active"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.boolean  "mon"
+    t.boolean  "tues"
+    t.boolean  "wed"
+    t.boolean  "thurs"
+    t.boolean  "fri"
+    t.boolean  "sat"
+    t.boolean  "sun"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "fname"
@@ -90,6 +159,14 @@ ActiveRecord::Schema.define(:version => 20140109072941) do
     t.boolean  "super_admin"
     t.boolean  "active",                 :default => true
     t.string   "customer_stripe_token"
+  end
+
+  create_table "userswimteams", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "swim_team_id"
+    t.integer  "payment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

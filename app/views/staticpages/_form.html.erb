@@ -1,0 +1,26 @@
+<%= form_for(@staticpage) do |f| %>
+  <% if @staticpage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@staticpage.errors.count, "error") %> prohibited this staticpage from being saved:</h2>
+
+      <ul>
+      <% @staticpage.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :page_name %>
+  <%= f.hidden_field :page_url %>
+
+  <div class="field">
+    <%= f.text_field :page_title, :class => 'input-block-level', :placeholder => 'Page Title' %>
+  </div>
+  <div class="field">
+    <%= f.text_area :page_body, :class => 'input-block-level', :placeholder => 'Page Info', :style=>"height:300px;" %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Save', :class => 'btn btn-main' %>
+  </div>
+<% end %>

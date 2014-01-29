@@ -12,3 +12,7 @@ gem 'mysql2', '> 0.3'
 gem 'paperclip', '2.8.0'
 
 gem 'stripe'
+
+group :development do
+	gem 'debugger'
+end
