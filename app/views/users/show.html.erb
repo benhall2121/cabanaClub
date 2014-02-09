@@ -65,6 +65,7 @@
               <%= link_to "Edit Page", new_staticpage_path(:page_name => "UserPayment", :page_url => "current_user"), :class => "btn btn-small btn-success" %>
             <% else %>
               <%= link_to "Edit Page", edit_staticpage_path(@staticpage), :class => "btn btn-small btn-success" %>
+              <%= link_to 'Remove Custom Page', @staticpage, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %>
             <% end %>
           </div>
         <% end %>
@@ -74,6 +75,7 @@
 
       <% if !@staticpage.nil? %>
         <div style="margin:15px 0;">
+          <%= image_tag @staticpage.static_page_photo.url(:small), :class => "bordered_image static_page_photo" if @staticpage.static_page_photo? %>
           <%= simple_format(@staticpage.page_body) %>
         </div>
       <% end %>

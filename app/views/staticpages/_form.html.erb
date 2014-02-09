@@ -20,6 +20,9 @@
   <div class="field">
     <%= f.text_area :page_body, :class => 'input-block-level', :placeholder => 'Page Info', :style=>"height:300px;" %>
   </div>
+  <div class="field">
+    Image: <%= f.file_field :static_page_photo %>
+  </div>
   <div class="actions">
     <%= f.submit 'Save', :class => 'btn btn-main' %>
   </div>

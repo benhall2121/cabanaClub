@@ -36,8 +36,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
+    puts "
+
+    ****************** require_login"
     unless current_user
-      redirect_to root_path, notice: 'You must be logged in to do that.'
+      puts "****************** current_user"
+      redirect_to membership_path, notice: 'You must be logged in to do that.'
     end
   end
   

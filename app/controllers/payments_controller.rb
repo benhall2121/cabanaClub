@@ -49,6 +49,7 @@ class PaymentsController < ApplicationController
     payment_description = ""
 
     @swim_team = []
+    @swim_lesson = []
     @membership_payment = []
     all_shopping_cart = get_shopping_cart
     all_shopping_cart.each do |sc|
@@ -62,6 +63,14 @@ class PaymentsController < ApplicationController
         payment_description += "Swim Team: #{model.name} - $#{model.price_per_participant} \n"
       end
       #------------  END SwimTeam  ------------#
+
+      #------------  SwimLesson  ------------#
+      if sc[1] == "SwimLesson"
+        @swim_lesson << model
+        total_payment += model.price_per_participant
+        payment_description += "Swim Lesson: #{model.name} - $#{model.price_per_participant} \n"
+      end
+      #------------  END SwimLesson  ------------#
 
       #------------  MemberPayment  ------------#
       if sc[1] == "MemberPayment"
@@ -104,6 +113,11 @@ class PaymentsController < ApplicationController
 
           if sc[1] == "SwimTeam"
             @mst = Userswimteam.new(:swim_team_id => sc[0], :user_id => current_user.id, :payment_id => @payment.id)
+            @mst.save
+          end
+
+          if sc[1] == "SwimLesson"
+            @mst = Userswimlesson.new(:swim_lesson_id => sc[0], :user_id => current_user.id, :payment_id => @payment.id)
             @mst.save
           end
 

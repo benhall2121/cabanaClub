@@ -29,13 +29,12 @@
               <li class="<%= 'active' if params[:controller] == 'people' && params[:type] == 'lifeguard' %>"><%= link_to 'Lifeguards', people_path(:type => "lifeguard") %></li>
               <li class="<%= 'active' if params[:controller] == 'people' && params[:type] == 'board' %>"><%= link_to 'Board', people_path(:type => "board") %></li>
               <li class="<%= 'active' if params[:controller] == 'meetings' %>"><%= link_to 'Meeting Notes', meetings_path() %></li>
-
-              <li class=""><%= link_to 'Swim Team', swim_teams_path() %></li>
-              <li class=""><%= link_to 'Swim Lessons', "#", :class => "not_created_yet" %></li>
+              <li class="<%= 'active' if params[:controller] == 'swim_teams' %>"><%= link_to 'Swim Team', swim_teams_path() %></li>
+              <li class="<%= 'active' if params[:controller] == 'swim_lessons' %>"><%= link_to 'Swim Lessons', swim_lessons_path() %></li>
               <% if current_user %>
-                <li class=""><%= link_to 'Membership', user_path(current_user) %></li>
+                <li class="<%= 'active' if params[:controller] == 'users' && params[:action] == 'show' %>"><%= link_to 'Membership', user_path(current_user) %></li>
               <% else %>
-                <li class=""><%= link_to 'Membership', sign_up_path() %></li>
+                <li class=""><%= link_to 'Membership', membership_path() %></li>
               <% end %>
 
               <li class=""><%= link_to 'Calendar', "#", :class => "not_created_yet" %></li>

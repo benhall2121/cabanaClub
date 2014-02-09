@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   has_many :userswimteams
   has_many :swim_teams, :through => :userswimteams
 
+  has_many :userswimlessons
+  has_many :swim_lessons, :through => :userswimlessons
+
   
   scope :reset_token, lambda { |token| where("password_reset_token = ?", token) }
 

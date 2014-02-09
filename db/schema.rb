@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140129060748) do
+ActiveRecord::Schema.define(:version => 20140209222012) do
 
   create_table "accounts", :force => true do |t|
     t.string   "account_number"
@@ -106,9 +106,40 @@ ActiveRecord::Schema.define(:version => 20140129060748) do
     t.string   "page_name"
     t.string   "page_title"
     t.text     "page_body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "page_url"
+    t.string   "static_page_photo_file_name"
+    t.string   "static_page_photo_content_type"
+    t.integer  "static_page_photo_file_size"
+    t.datetime "static_page_photo_updated_at"
+  end
+
+  create_table "swim_lessons", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "start_age"
+    t.integer  "end_age"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "num_allowed_participants"
+    t.float    "price_per_participant"
+    t.boolean  "active"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.boolean  "mon"
+    t.boolean  "tues"
+    t.boolean  "wed"
+    t.boolean  "thurs"
+    t.boolean  "fri"
+    t.boolean  "sat"
+    t.boolean  "sun"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "swim_teams", :force => true do |t|
@@ -159,6 +190,14 @@ ActiveRecord::Schema.define(:version => 20140129060748) do
     t.boolean  "super_admin"
     t.boolean  "active",                 :default => true
     t.string   "customer_stripe_token"
+  end
+
+  create_table "userswimlessons", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "swim_lesson_id"
+    t.integer  "payment_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "userswimteams", :force => true do |t|

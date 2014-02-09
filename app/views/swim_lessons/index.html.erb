@@ -1,3 +1,5 @@
+
+
 <div class="bordered_wrapper">
 
   <div class="header_wrapper">
@@ -5,15 +7,15 @@
       <% if !@staticpage.nil? %>
         <%= @staticpage.page_title %>
       <% else %>
-        Swim Team
+        Swim Lessons
       <% end %>
     </div>
     <% if is_admin? %>
       <div class="pull-right">
-        <%= link_to "New Swim Team", new_swim_team_path(), :class => "btn btn-small btn-success" %>
+        <%= link_to "New Swim Lesson", new_swim_lesson_path(), :class => "btn btn-small btn-success" %>
 
         <% if @staticpage.nil? %>
-          <%= link_to "Edit Page", new_staticpage_path(:page_name => "SwimTeam", :page_url => "swim_teams"), :class => "btn btn-small btn-success" %>
+          <%= link_to "Edit Page", new_staticpage_path(:page_name => "SwimLesson", :page_url => "swim_lessons"), :class => "btn btn-small btn-success" %>
         <% else %>
           <%= link_to "Edit Page", edit_staticpage_path(@staticpage), :class => "btn btn-small btn-success" %>
           <%= link_to 'Remove Custom Page', @staticpage, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %>
@@ -23,19 +25,19 @@
   </div>
 
   <% if !@staticpage.nil? %>
-    <div style="margin:15px 0; overflow:auto;">
+    <div style="margin:15px 0;">
       <%= image_tag @staticpage.static_page_photo.url(:small), :class => "bordered_image static_page_photo" if @staticpage.static_page_photo? %>
       <%= simple_format(@staticpage.page_body) %>
     </div>
   <% end %>
 
   <div class="person_wrapper">
-    <% if @swim_teams.count > 0 %>
-      <% @swim_teams.each do |swim_team| 
+    <% if @swim_lessons.count > 0 %>
+      <% @swim_lessons.each do |swim_lesson| 
 
           inactive_css = ""
 
-          if !swim_team.active? || swim_team.start_date < Date.today
+          if !swim_lesson.active? || swim_lesson.start_date < Date.today
             inactive_css = "border:1px solid red;"
           end
 
@@ -43,29 +45,29 @@
         <div style="<%= inactive_css %> margin-bottom:20px;">
           <div class="person_left_column">
             <div>
-              <%= image_tag swim_team.photo.url(:small), :class => "bordered_image" %>
+              <%= image_tag swim_lesson.photo.url(:small), :class => "bordered_image" %>
             </div>
             <div class="button_wrapper">
               <% if current_user %>
-                <input class="register_for_class" id="<%= swim_team.id.to_s + ',' + swim_team.class.name %>" type="checkbox" /> Add class to cart
+                <input class="register_for_class" id="<%= swim_lesson.id.to_s + ',' + swim_lesson.class.name %>" type="checkbox" /> Add class to cart
               <% else %>
                 <%= link_to 'Add class to cart', log_in_path(), :class => "btn btn-small btn-success" %>
               <% end %>
             </div>
             <% if is_admin? %>
               <div class="button_wrapper">
-                <%= link_to 'Edit', edit_swim_team_path(swim_team), :class => "btn btn-small btn-warning" %> &nbsp;&nbsp; <%= link_to 'Delete', swim_team, method: :delete, data: { confirm: 'Are you sure?' }, type: "#{params[:type]}", :class => "btn btn-small btn-danger" %>
+                <%= link_to 'Edit', edit_swim_lesson_path(swim_lesson), :class => "btn btn-small btn-warning" %> &nbsp;&nbsp; <%= link_to 'Delete', swim_lesson, method: :delete, data: { confirm: 'Are you sure?' }, type: "#{params[:type]}", :class => "btn btn-small btn-danger" %>
               </div>
             <% end %>
-            <% if !swim_team.active %>
+            <% if !swim_lesson.active %>
               <div style="color:red; font-weight:bold; text-align:center;">
                 INACTIVE
               </div>
             <% end %>
 
-            <% if swim_team.start_date < Date.today %>
+            <% if swim_lesson.start_date < Date.today %>
               <div style="color:red; font-weight:bold; text-align:center;">
-                Swim Team Started
+                Swim Lesson Started
               </div>
             <% end %>
           </div>
@@ -82,23 +84,23 @@
                 <th>Price</th>
               </tr>
               <tr>
-                <td class="span4" style="text-align:left;"><%= swim_team.name %></td>
-                <td class="span2"><%= swim_team.start_date.strftime("%m/%d") %> - <%= swim_team.end_date.strftime("%m/%d") %></td>
+                <td class="span4" style="text-align:left;"><%= swim_lesson.name %></td>
+                <td class="span2"><%= swim_lesson.start_date.strftime("%m/%d") %> - <%= swim_lesson.end_date.strftime("%m/%d") %></td>
                 <td class="span1">
-                  <% if swim_team.mon? %>Monday<% end %>
-                  <% if swim_team.tues? %>Tuesday<% end %>
-                  <% if swim_team.wed? %>Wednesday<% end %>
-                  <% if swim_team.thurs? %>Thursday<% end %>
-                  <% if swim_team.fri? %>Friday<% end %>
-                  <% if swim_team.sat? %>Saturday<% end %>
-                  <% if swim_team.sun? %>Sunday<% end %>
+                  <% if swim_lesson.mon? %>Monday<% end %>
+                  <% if swim_lesson.tues? %>Tuesday<% end %>
+                  <% if swim_lesson.wed? %>Wednesday<% end %>
+                  <% if swim_lesson.thurs? %>Thursday<% end %>
+                  <% if swim_lesson.fri? %>Friday<% end %>
+                  <% if swim_lesson.sat? %>Saturday<% end %>
+                  <% if swim_lesson.sun? %>Sunday<% end %>
                 </td>
-                <td class="span3"><%= swim_team.start_time.strftime("%I:%M %p") %> - <%= swim_team.end_time.strftime("%I:%M %p")  %></td>
-                <td class="span1"><%= swim_team.start_age %> - <%= swim_team.end_age %></td>
-                <td class="span1"><%= number_to_currency(swim_team.price_per_participant) %></td>
+                <td class="span3"><%= swim_lesson.start_time.strftime("%I:%M %p") %> - <%= swim_lesson.end_time.strftime("%I:%M %p")  %></td>
+                <td class="span1"><%= swim_lesson.start_age %> - <%= swim_lesson.end_age %></td>
+                <td class="span1"><%= number_to_currency(swim_lesson.price_per_participant) %></td>
               </tr>
               <tr>
-                <td colspan="6" style="text-align:left;"><%= simple_format(swim_team.description) %></td>
+                <td colspan="6" style="text-align:left;"><%= simple_format(swim_lesson.description) %></td>
               </tr>
 
             </table>
@@ -107,8 +109,8 @@
           <% if is_admin? %>
             <div>
               <div class="person_wrapper" style="margin:0 20px 0 20px;">
-                <% if swim_team.users.length > 0 %>
-                  <h5>Users signed up for this Swim Team:</h5>
+                <% if swim_lesson.users.length > 0 %>
+                  <h5>Users signed up for this Swim Lesson:</h5>
                   <div style="padding-left:20px;">
                     <table class="table table-condensed">
                       <tr>
@@ -118,7 +120,7 @@
                         <th>Phone number</th>
                       </tr>
 
-                      <% swim_team.users.each do |user| %>
+                      <% swim_lesson.users.each do |user| %>
                         <tr>
                           <td><%= user.email %></td>
                           <td><%= user.fname %></td>
@@ -130,11 +132,13 @@
                     </table>
                   </div>
                 <% else %>
-                  <h5>No users signed up for this Swim Team</h5>
+                  <h5>No users signed up for this Swim Lesson</h5>
                 <% end %>
               </div>
             </div>
           <% end %>
+
+
         </div>
       <% end %>
 
@@ -145,7 +149,7 @@
       </div>
     <% else %>
       <div style="margin-bottom:10px;">
-        No Active Swim Teams
+        No Active Swim Lessons
       </div>
     <% end %>
 
@@ -154,6 +158,7 @@
 
 
 </div>
+
 
 
 

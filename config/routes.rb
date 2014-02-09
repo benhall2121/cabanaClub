@@ -1,5 +1,11 @@
 CabanaClub::Application.routes.draw do
 
+  resources :userswimlessons
+
+
+  resources :swim_lessons
+
+
   resources :staticpages
 
 
@@ -36,6 +42,7 @@ CabanaClub::Application.routes.draw do
   match '/add_item_to_shopping_cart' => 'users#add_item_to_shopping_cart', :via => :post
   match '/remove_item_from_shopping_cart' => 'users#remove_item_from_shopping_cart', :via => :post
   match '/remove_all_items_from_shopping_cart' => 'users#remove_all_items_from_shopping_cart', :via => :post
+  match '/membership' => "users#membership", :as => "membership"
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"

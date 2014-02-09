@@ -11,6 +11,10 @@ class UsersController < ApplicationController
   def admin
   end
 
+  def membership
+    @staticpage = Staticpage.find(:first, :conditions => ["page_name = ?", "Membership"]) 
+  end
+
   # GET /users
   # GET /users.json
   def index
@@ -39,7 +43,11 @@ class UsersController < ApplicationController
 
       users_payments = current_user.membershippayments.all(:select => :member_payment_id).collect(&:member_payment_id)
 
-      @payments_need_to_make = MemberPayment.find(:all, :conditions => ["id not in (?)", users_payments])
+      if users_payments.length > 0
+        @payments_need_to_make = MemberPayment.find(:all, :conditions => ["id not in (?)", users_payments])
+      else
+        @payments_need_to_make = MemberPayment.find(:all)
+      end
     end
 
 
@@ -52,6 +60,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
+    @staticpage = Staticpage.find(:first, :conditions => ["page_name = ?", "SignUp"]) 
     @user = User.new
     @accounts = Account.all
 
